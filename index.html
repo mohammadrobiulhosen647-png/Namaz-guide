@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="bn" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>সালাত গাইড | নামাজের সময়সূচি, নিয়ম ও দোয়া</title>
+
+  <!-- Google Fonts: Hind Siliguri (Bangla) & Amiri (Arabic) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            bangla: ['"Hind Siliguri"', 'sans-serif'],
+            arabic: ['"Amiri"', 'serif'],
+          },
+          colors: {
+            emerald: {
+              50: '#ecfdf5',
+              100: '#d1fae5',
+              200: '#a7f3d0',
+              600: '#059669',
+              700: '#047857',
+              800: '#065f46',
+              900: '#064e3b',
+              950: '#042f24',
+            },
+            gold: {
+              50: '#fffbeb',
+              100: '#fef3c7',
+              300: '#fcd34d',
+              400: '#fbbf24',
+              500: '#f59e0b',
+              600: '#d97706',
+              700: '#b45309',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    html.dark {
+      color-scheme: dark;
+    }
+    body {
+      font-family: 'Hind Siliguri', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .font-arabic {
+      font-family: 'Amiri', serif;
+      direction: rtl;
+      line-height: 2.15;
+    }
+    /* Subtle Islamic geometric pattern overlay */
+    .islamic-pattern {
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.07'%3E%3Cpath d='M30 0l8.787 21.213L60 30l-21.213 8.787L30 60l-8.787-21.213L0 30l21.213-8.787L30 0zm0 11.314L24.343 24.343 11.314 30l13.029 5.657L30 48.686l5.657-13.029L48.686 30l-13.029-5.657L30 11.314z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    /* Smooth accordion transition with zero height when closed */
+    .accordion-content {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.28s ease-out;
+    }
+    .accordion-item.open .accordion-content {
+      grid-template-rows: 1fr;
+    }
+    .accordion-inner {
+      overflow: hidden;
+      min-height: 0;
+    }
+    .accordion-item.open .accordion-chevron {
+      transform: rotate(180deg);
+    }
+    /* Hide scrollbar for horizontal pills */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .pb-safe {
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+  </style>
+</head>
+<body class="bg-[#f4f7f5] text-slate-800 dark:bg-[#091310] dark:text-slate-100 min-h-screen transition-colors duration-300 pb-24">
+
+  <!-- Top Header -->
+  <header class="sticky top-0 z-40 backdrop-blur-md bg-white/90 dark:bg-[#0d1c17]/90 border-b border-emerald-100 dark:border-emerald-900/60">
+    <div class="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
+      <div class="flex items-center gap-2.5 min-w-0">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-700 to-emerald-900 flex items-center justify-center shadow-sm border border-gold-400/40 text-gold-400 shrink-0">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+          </svg>
+        </div>
+        <div class="truncate">
+          <h1 class="text-lg font-bold tracking-tight text-emerald-900 dark:text-emerald-100 leading-tight">সালাত গাইড</h1>
+          <p class="text-[11px] text-emerald-700/80 dark:text-emerald-300/75 font-medium truncate">নামাজের সময়, নিয়ম ও দোয়া</p>
+        </div>
+      </div>
+
+      <button id="themeToggle" type="button" aria-label="থিম পরিবর্তন করুন" class="p-2 rounded-xl bg-emerald-50 dark:bg-emerald-900/50 text-emerald-800 dark:text-gold-400 border border-emerald-200/70 dark:border-emerald-800 hover:bg-emerald-100 dark:hover:bg-emerald-900 transition shrink-0">
+        <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+        </svg>
+        <svg class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main class="max-w-3xl mx-auto px-4 pt-4 space-y-6">
+
+    <!-- ==================== TAB 1: সময়সূচি (Namaz Times) ==================== -->
+    <section id="tab-times" class="tab-panel space-y-5">
+      <!-- City Selector & Date Banner -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white dark:bg-[#11221c] p-3.5 rounded-2xl border border-emerald-100 dark:border-emerald-900/60 shadow-sm">
+        <div class="space-y-0.5 min-w-0">
+          <p id="currentDateText" class="text-sm font-semibold text-emerald-900 dark:text-emerald-100 leading-snug"></p>
+          <p id="hijriDateText" class="text-xs text-gold-700 dark:text-gold-400 font-medium leading-snug"></p>
+        </div>
+        <div class="flex items-center gap-2 shrink-0">
+          <label for="citySelect" class="text-xs font-medium text-slate-500 dark:text-slate-400 shrink-0">শহর:</label>
+          <select id="citySelect" class="w-full sm:w-auto bg-emerald-50 dark:bg-emerald-950 text-emerald-900 dark:text-emerald-100 text-sm font-semibold px-3 py-2 rounded-xl border border-emerald-200 dark:border-emerald-800 focus:outline-none focus:ring-2 focus:ring-emerald-600">
+            <option value="chattogram">চট্টগ্রাম (Chattogram)</option>
+            <option value="dhaka">ঢাকা (Dhaka)</option>
+            <option value="sylhet">সিলেট (Sylhet)</option>
+            <option value="rajshahi">রাজশাহী (Rajshahi)</option>
+            <option value="khulna">খুলনা (Khulna)</option>
+            <option value="barishal">বরিশাল (Barishal)</option>
+            <option value="rangpur">রংপুর (Rangpur)</option>
+            <option value="mymensingh">ময়মনসিংহ (Mymensingh)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Hero Countdown Card -->
+      <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-800 via-emerald-900 to-[#042f24] text-white p-5 sm:p-6 shadow-lg border border-gold-500/30 islamic-pattern">
+        <div class="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div class="space-y-1.5 min-w-0">
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-white/10 text-gold-300 border border-gold-400/25 max-w-full">
+              <span class="w-2 h-2 rounded-full bg-gold-400 animate-pulse shrink-0"></span>
+              <span id="currentWaqtBadge" class="truncate">বর্তমান সময়: --</span>
+            </span>
+            <h2 class="text-xl sm:text-2xl font-bold tracking-tight pt-1 leading-snug" id="nextPrayerName">পরবর্তী ওয়াক্ত: --</h2>
+            <p class="text-emerald-100/90 text-sm" id="nextPrayerTimeLabel">শুরু হবে: --</p>
+          </div>
+
+          <div class="bg-black/25 backdrop-blur-sm rounded-2xl p-4 border border-white/10 text-center sm:min-w-[195px] shrink-0">
+            <p class="text-[11px] uppercase tracking-wider text-emerald-200/80 font-medium">বাকি সময়</p>
+            <div id="countdownTimer" class="text-2xl sm:text-3xl font-bold text-gold-400 tabular-nums mt-0.5 tracking-wide whitespace-nowrap">
+              ০০:০০:০০
+            </div>
+            <p class="text-[11px] text-emerald-200/80 mt-1 whitespace-nowrap" id="currentClock">এখন সময়: --:--</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sun Info Strip -->
+      <div class="grid grid-cols-2 gap-3">
+        <div class="bg-white dark:bg-[#11221c] rounded-2xl p-3.5 border border-emerald-100 dark:border-emerald-900/60 flex items-center justify-between gap-2">
+          <div class="min-w-0">
+            <p class="text-xs text-slate-500 dark:text-slate-400">সূর্যোদয় (ফজর শেষ)</p>
+            <p id="sunriseTime" class="text-sm sm:text-base font-bold text-emerald-800 dark:text-emerald-200 mt-0.5 whitespace-nowrap">--:--</p>
+          </div>
+          <span class="text-gold-500 text-xl shrink-0" aria-hidden="true">🌅</span>
+        </div>
+        <div class="bg-white dark:bg-[#11221c] rounded-2xl p-3.5 border border-emerald-100 dark:border-emerald-900/60 flex items-center justify-between gap-2">
+          <div class="min-w-0">
+            <p class="text-xs text-slate-500 dark:text-slate-400">সূর্যাস্ত (ইফতার)</p>
+            <p id="sunsetTime" class="text-sm sm:text-base font-bold text-emerald-800 dark:text-emerald-200 mt-0.5 whitespace-nowrap">--:--</p>
+          </div>
+          <span class="text-gold-500 text-xl shrink-0" aria-hidden="true">🌇</span>
+        </div>
+      </div>
+
+      <!-- 5 Daily Prayers List -->
+      <div class="bg-white dark:bg-[#11221c] rounded-3xl border border-emerald-100 dark:border-emerald-900/60 shadow-sm overflow-hidden">
+        <div class="px-4 sm:px-5 py-3.5 border-b border-emerald-50 dark:border-emerald-900/50 flex items-center justify-between gap-2">
+          <h3 class="font-bold text-emerald-900 dark:text-emerald-100 text-sm sm:text-base">আজকের পাঁচ ওয়াক্ত নামাজ</h3>
+          <span id="selectedCityLabel" class="text-xs font-semibold text-emerald-700 dark:text-gold-400 bg-emerald-50 dark:bg-emerald-950 px-2.5 py-1 rounded-lg whitespace-nowrap shrink-0">চট্টগ্রাম</span>
+        </div>
+        <div id="prayerList" class="divide-y divide-emerald-50 dark:divide-emerald-900/40">
+          <!-- Populated dynamically by JS -->
+        </div>
+      </div>
+
+      <!-- Makruh / Prohibited Times Note -->
+      <div class="bg-amber-50/80 dark:bg-amber-950/20 border border-amber-200/80 dark:border-amber-800/40 rounded-2xl p-4 text-xs sm:text-sm text-amber-900 dark:text-amber-200/90 leading-relaxed">
+        <strong class="font-bold">নামাজের নিষিদ্ধ (মাকরূহ) সময়:</strong>
+        ১. সূর্যোদয়ের সময় (প্রায় ১৫–২০ মিনিট), ২. ঠিক দ্বিপ্রহরের সময় (যোহরের আগে প্রায় ৫–১০ মিনিট), এবং ৩. সূর্যাস্তের সময় (কেবল ঐ দিনের আসরের ফরজ আদায় করা যাবে)।
+      </div>
+    </section>
+
+    <!-- ==================== TAB 2: নিয়মকানুন (Step-by-Step Guide) ==================== -->
+    <section id="tab-guide" class="tab-panel hidden space-y-5">
+      <!-- Sub-navigation Pills -->
+      <div class="flex gap-2 overflow-x-auto no-scrollbar pb-1">
+        <button type="button" data-guide-tab="wudu" class="guide-sub-btn px-4 py-2 rounded-full text-sm font-semibold whitespace-nowrap bg-emerald-700 text-white shadow-sm transition">
+          ওজুর নিয়ম
+        </button>
+        <button type="button" data-guide-tab="rakat" class="guide-sub-btn px-4 py-2 rounded-full text-sm font-semibold whitespace-nowrap bg-white dark:bg-[#11221c] text-slate-700 dark:text-slate-300 border border-emerald-100 dark:border-emerald-900 transition">
+          ওয়াক্ত ও রাকাত সংখ্যা
+        </button>
+        <button type="button" data-guide-tab="steps" class="guide-sub-btn px-4 py-2 rounded-full text-sm font-semibold whitespace-nowrap bg-white dark:bg-[#11221c] text-slate-700 dark:text-slate-300 border border-emerald-100 dark:border-emerald-900 transition">
+          নামাজ আদায়ের ধাপ
+        </button>
+      </div>
+
+      <!-- Sub-section 1: Wudu Guide -->
+      <div id="guide-wudu" class="guide-sub-panel space-y-4">
+        <div class="bg-emerald-800 text-white rounded-2xl p-4 sm:p-5 islamic-pattern">
+          <h2 class="text-lg font-bold">পবিত্রতা ও ওজুর নিয়মাবলি</h2>
+          <p class="text-xs sm:text-sm text-emerald-100/90 mt-1 leading-relaxed">নামাজ কবুল হওয়ার পূর্বশর্ত হলো পবিত্রতা। ওজুতে ৪টি ফরজ কাজ রয়েছে—এর কোনো একটি বাদ পড়লে বা সামান্য অংশ শুকনো থাকলে ওজু হবে না।</p>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+          <div class="bg-white dark:bg-[#11221c] p-3 rounded-2xl border border-gold-400/40 text-center">
+            <span class="text-xs font-bold text-gold-700 dark:text-gold-400">ফরজ ১</span>
+            <p class="text-xs sm:text-sm font-semibold mt-1">সমস্ত মুখমণ্ডল ধৌত করা</p>
+          </div>
+          <div class="bg-white dark:bg-[#11221c] p-3 rounded-2xl border border-gold-400/40 text-center">
+            <span class="text-xs font-bold text-gold-700 dark:text-gold-400">ফরজ ২</span>
+            <p class="text-xs sm:text-sm font-semibold mt-1">কনুইসহ উভয় হাত ধৌত করা</p>
+          </div>
+          <div class="bg-white dark:bg-[#11221c] p-3 rounded-2xl border border-gold-400/40 text-center">
+            <span class="text-xs font-bold text-gold-700 dark:text-gold-400">ফরজ ৩</span>
+            <p class="text-xs sm:text-sm font-semibold mt-1">মাথার এক-চতুর্থাংশ মাসাহ করা</p>
+          </div>
+          <div class="bg-white dark:bg-[#11221c] p-3 rounded-2xl border border-gold-400/40 text-center">
+            <span class="text-xs font-bold text-gold-700 dark:text-gold-400">ফরজ ৪</span>
+            <p class="text-xs sm:text-sm font-semibold mt-1">টাখনুসহ উভয় পা ধৌত করা</p>
+          </div>
+        </div>
+
+        <div id="wuduStepsList" class="space-y-2.5">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- Sub-section 2: Rakat & Types -->
+      <div id="guide-rakat" class="guide-sub-panel hidden space-y-4">
+        <div class="bg-white dark:bg-[#11221c] rounded-2xl p-4 border border-emerald-100 dark:border-emerald-900/60 space-y-2.5">
+          <h2 class="text-lg font-bold text-emerald-900 dark:text-emerald-100">নামাজের প্রকারভেদ</h2>
+          <div class="grid sm:grid-cols-2 gap-2.5 text-sm">
+            <div class="p-3 rounded-xl bg-emerald-50/70 dark:bg-emerald-950/40 leading-relaxed">
+              <strong class="text-emerald-800 dark:text-emerald-300">ফরজ (Farz):</strong> অবশ্যই পালনীয়। ইচ্ছাকৃত ছাড়লে বড় গুনাহ হয়।
+            </div>
+            <div class="p-3 rounded-xl bg-amber-50/70 dark:bg-amber-950/30 leading-relaxed">
+              <strong class="text-amber-800 dark:text-gold-400">ওয়াজিব (Wajib):</strong> যেমন বিতর নামাজ। ফরজের কাছাকাছি পর্যায়ের আবশ্যকীয়।
+            </div>
+            <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/40 leading-relaxed">
+              <strong class="text-slate-800 dark:text-slate-200">সুন্নতে মুআক্কাদা:</strong> রাসূল (সা.) নিয়মিত আদায় করেছেন। বিনা ওজরে ছাড়া অনুচিত।
+            </div>
+            <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/40 leading-relaxed">
+              <strong class="text-slate-800 dark:text-slate-200">সুন্নতে গায়রে মুআক্কাদা ও নফল:</strong> অতিরিক্ত সওয়াব ও আল্লাহর নৈকট্য লাভের নামাজ (যেমন তাহাজ্জুদ, ইশরাক)।
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white dark:bg-[#11221c] rounded-2xl border border-emerald-100 dark:border-emerald-900/60 overflow-hidden">
+          <div class="px-4 py-3 border-b border-emerald-50 dark:border-emerald-900/50">
+            <h3 class="font-bold text-emerald-900 dark:text-emerald-100">ওয়াক্ত অনুযায়ী রাকাত তালিকা</h3>
+          </div>
+          <div id="rakatTableContainer" class="divide-y divide-emerald-50 dark:divide-emerald-900/40">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Sub-section 3: Step-by-Step Namaz -->
+      <div id="guide-steps" class="guide-sub-panel hidden space-y-4">
+        <div class="bg-white dark:bg-[#11221c] rounded-2xl p-4 border border-emerald-100 dark:border-emerald-900/60">
+          <h2 class="text-lg font-bold text-emerald-900 dark:text-emerald-100">নামাজ আদায়ের ধারাবাহিক নিয়ম</h2>
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-1 leading-relaxed">২, ৩ ও ৪ রাকাত বিশিষ্ট নামাজ (ফরজ, সুন্নত, বিতর ও নফল) আদায়ের মূল ধাপসমূহ নিচে সহজভাবে দেওয়া হলো।</p>
+        </div>
+        <div id="namazStepsList" class="space-y-3">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== TAB 3: দোয়া ও তাসবিহ (Duas, Surahs & Tasbeeh) ==================== -->
+    <section id="tab-duas" class="tab-panel hidden space-y-5">
+      <!-- Sub-navigation Pills -->
+      <div class="flex gap-2 overflow-x-auto no-scrollbar pb-1">
+        <button type="button" data-dua-tab="tasbeeh" class="dua-sub-btn px-4 py-2 rounded-full text-sm font-semibold whitespace-nowrap bg-emerald-700 text-white shadow-sm transition">
+          ডিজিটাল তাসবিহ
+        </button>
+        <button type="button" data-dua-tab="prayers" class="dua-sub-btn px-4 py-2 rounded-full text-sm font-semibold whitespace-nowrap bg-white dark:bg-[#11221c] text-slate-700 dark:text-slate-300 border border-emerald-100 dark:border-emerald-900 transition">
+          নামাজের দোয়া
+        </button>
+        <button type="button" data-dua-tab="surahs" class="dua-sub-btn px-4 py-2 rounded-full text-sm font-semibold whitespace-nowrap bg-white dark:bg-[#11221c] text-slate-700 dark:text-slate-300 border border-emerald-100 dark:border-emerald-900 transition">
+          ছোট সূরা সমূহ
+        </button>
+      </div>
+
+      <!-- Sub-section 1: Digital Tasbeeh Counter -->
+      <div id="dua-tasbeeh" class="dua-sub-panel space-y-4">
+        <div class="bg-white dark:bg-[#11221c] rounded-3xl p-5 sm:p-6 border border-emerald-100 dark:border-emerald-900/60 shadow-sm space-y-5">
+          <!-- Zikr Selector -->
+          <div class="space-y-2">
+            <label for="zikrSelect" class="text-xs font-semibold text-slate-500 dark:text-slate-400">জিকির নির্বাচন করুন:</label>
+            <select id="zikrSelect" class="w-full bg-emerald-50 dark:bg-emerald-950 text-emerald-900 dark:text-emerald-100 text-sm font-semibold px-3.5 py-2.5 rounded-xl border border-emerald-200 dark:border-emerald-800 focus:outline-none focus:ring-2 focus:ring-emerald-600">
+              <option value="subhanallah">সুবহানাল্লাহ (سُبْحَانَ اللَّهِ) — আল্লাহ পবিত্র</option>
+              <option value="alhamdulillah">আলহামদুলিল্লাহ (الْحَمْدُ لِلَّهِ) — সকল প্রশংসা আল্লাহর</option>
+              <option value="allahuakbar">আল্লাহু আকবার (اللَّهُ أَكْبَرُ) — আল্লাহ মহান</option>
+              <option value="astaghfirullah">আস্তাগফিরুল্লাহ (أَسْتَغْفِرُ اللَّهَ) — আমি আল্লাহর ক্ষমা প্রার্থনা করছি</option>
+              <option value="lailaha">লা ইলাহা ইল্লাল্লাহ (لَا إِلَٰهَ إِلَّا اللَّهُ) — আল্লাহ ছাড়া কোনো উপাস্য নেই</option>
+              <option value="durood">সাল্লাল্লাহু আলাইহি ওয়া সাল্লাম — দরুদ শরীফ</option>
+            </select>
+          </div>
+
+          <!-- Active Zikr Arabic Display -->
+          <div class="text-center bg-emerald-50/70 dark:bg-emerald-950/40 rounded-2xl p-4 border border-emerald-100 dark:border-emerald-900/60">
+            <p id="tasbeehArabic" class="font-arabic text-3xl text-emerald-900 dark:text-gold-400">سُبْحَانَ اللَّهِ</p>
+            <p id="tasbeehBangla" class="text-sm font-semibold text-emerald-800 dark:text-emerald-200 mt-1">সুবহানাল্লাহ</p>
+            <p id="tasbeehMeaning" class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">অর্থ: আল্লাহ তাআলা সর্বপ্রকার ত্রুটি থেকে পবিত্র</p>
+          </div>
+
+          <!-- Target Selector -->
+          <div class="flex flex-wrap items-center justify-center gap-2">
+            <span class="text-xs text-slate-500 dark:text-slate-400">টার্গেট:</span>
+            <button type="button" data-target="33" class="target-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-700 text-white transition">৩৩ বার</button>
+            <button type="button" data-target="100" class="target-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-50 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-200 border border-emerald-200 dark:border-emerald-800 transition">১০০ বার</button>
+            <button type="button" data-target="0" class="target-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-50 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-200 border border-emerald-200 dark:border-emerald-800 transition">অসীম</button>
+          </div>
+
+          <!-- Interactive Tap Circle -->
+          <div class="flex flex-col items-center justify-center py-2">
+            <button id="tasbeehTapBtn" type="button" class="relative w-48 h-48 rounded-full flex flex-col items-center justify-center bg-gradient-to-br from-emerald-700 to-emerald-900 text-white shadow-xl active:scale-95 transition-transform select-none border-4 border-gold-400/40 focus:outline-none focus:ring-4 focus:ring-emerald-500/30">
+              <!-- SVG Progress Ring -->
+              <svg class="absolute inset-0 w-full h-full -rotate-90 pointer-events-none" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="46" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="4" />
+                <circle id="tasbeehRing" cx="50" cy="50" r="46" fill="none" stroke="#fbbf24" stroke-width="4" stroke-linecap="round" stroke-dasharray="289.03" stroke-dashoffset="289.03" class="transition-all duration-200" />
+              </svg>
+              <span class="text-xs text-emerald-200 uppercase tracking-wider">ট্যাপ করে গণনা</span>
+              <span id="tasbeehCountDisplay" class="text-5xl font-bold tabular-nums my-1">০</span>
+              <span id="tasbeehTargetLabel" class="text-xs text-gold-300 font-medium">লক্ষ্য: ৩৩</span>
+            </button>
+            <p id="tasbeehCompleteMsg" class="min-h-[1.25rem] text-xs font-semibold text-gold-700 dark:text-gold-400 mt-3 opacity-0 transition-opacity text-center">মাশাআল্লাহ! নির্ধারিত লক্ষ্য পূর্ণ হয়েছে।</p>
+          </div>
+
+          <!-- Controls -->
+          <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-emerald-50 dark:border-emerald-900/50">
+            <div class="text-xs text-slate-500 dark:text-slate-400">
+              মোট সেশন: <strong id="totalTasbeehDisplay" class="text-emerald-800 dark:text-emerald-200">০</strong>
+            </div>
+            <div class="flex items-center gap-2">
+              <button id="tasbeehUndoBtn" type="button" class="px-3 py-2 rounded-xl text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-200 border border-emerald-200 dark:border-emerald-800 hover:bg-emerald-100 dark:hover:bg-emerald-900 transition">
+                -১ কমান
+              </button>
+              <button id="tasbeehResetBtn" type="button" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold bg-rose-50 dark:bg-rose-950/40 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-900 hover:bg-rose-100 dark:hover:bg-rose-950/70 transition">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                </svg>
+                রিসেট
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sub-section 2: Prayer Duas -->
+      <div id="dua-prayers" class="dua-sub-panel hidden space-y-3">
+        <!-- Populated by JS -->
+      </div>
+
+      <!-- Sub-section 3: Short Surahs -->
+      <div id="dua-surahs" class="dua-sub-panel hidden space-y-3">
+        <!-- Populated by JS -->
+      </div>
+    </section>
+
+    <!-- ==================== TAB 4: মাসয়ালা ও ভুলত্রুটি (Rules & Mistakes) ==================== -->
+    <section id="tab-rules" class="tab-panel hidden space-y-5">
+      <div class="bg-emerald-800 text-white rounded-2xl p-4 sm:p-5 islamic-pattern">
+        <h2 class="text-lg font-bold">নামাজের জরুরি মাসয়ালা ও সাধারণ ভুলত্রুটি</h2>
+        <p class="text-xs sm:text-sm text-emerald-100/90 mt-1 leading-relaxed">ফরজ, ওয়াজিব, সুন্নত, মাকরূহ এবং সচরাচর হয়ে যাওয়া ভুলসমূহ জেনে নিন।</p>
+      </div>
+
+      <!-- Accordions -->
+      <div id="rulesAccordions" class="space-y-3">
+        <!-- Populated by JS -->
+      </div>
+
+      <!-- Common Mistakes Section -->
+      <div class="space-y-3 pt-2">
+        <h3 class="font-bold text-base text-emerald-900 dark:text-emerald-100 flex items-center gap-2">
+          <span class="w-2 h-5 rounded-full bg-gold-500 inline-block shrink-0"></span>
+          নামাজে সচরাচর যেসব ভুল হয়ে থাকে
+        </h3>
+        <div id="mistakesList" class="space-y-2.5">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== DISCLAIMER FOOTER ==================== -->
+    <footer class="pt-4 pb-6 border-t border-emerald-200/60 dark:border-emerald-900/50 text-center space-y-2">
+      <div class="bg-white/75 dark:bg-[#11221c]/75 rounded-2xl p-4 border border-emerald-100 dark:border-emerald-900/50 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+        <strong class="text-emerald-800 dark:text-emerald-300">সতর্কতা ও তথ্যসূত্র:</strong>
+        এখানে প্রদর্শিত নামাজের সময়সূচি হানাফি আসর ও ইসলামিক ফাউন্ডেশন বাংলাদেশের প্রচলিত পদ্ধতি অনুযায়ী গাণিতিকভাবে নির্ণীত; স্থানীয় মসজিদের জামাত বা আজানের সাথে ১–২ মিনিট পার্থক্য হতে পারে এবং হিজরি তারিখ চাঁদ দেখার ওপর নির্ভরশীল। আরবি উচ্চারণ (লিপ্যন্তর) কেবল শেখার সহায়তার জন্য দেওয়া হয়েছে—বিশুদ্ধ তিলাওয়াত ও জটিল মাসয়ালার জন্য অনুগ্রহ করে নির্ভরযোগ্য আলেম বা মূল ইসলামিক গ্রন্থের সাথে মিলিয়ে নিন।
+      </div>
+      <p class="text-[11px] text-slate-400 dark:text-slate-500">সালাত গাইড • শান্ত, সহজ ও নির্ভুল ইবাদতের সহায়ক</p>
+    </footer>
+
+  </main>
+
+  <!-- Bottom Navigation Bar -->
+  <nav class="fixed bottom-0 inset-x-0 z-50 bg-white/95 dark:bg-[#0d1c17]/95 backdrop-blur-md border-t border-emerald-100 dark:border-emerald-900/70 shadow-[0_-4px_20px_rgba(0,0,0,0.06)] pb-safe">
+    <div class="max-w-3xl mx-auto grid grid-cols-4 h-16">
+      <button type="button" data-tab="tab-times" class="nav-btn active flex flex-col items-center justify-center gap-0.5 text-emerald-700 dark:text-gold-400 font-semibold transition">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+        <span class="text-[11px]">সময়সূচি</span>
+      </button>
+
+      <button type="button" data-tab="tab-guide" class="nav-btn flex flex-col items-center justify-center gap-0.5 text-slate-500 dark:text-slate-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+        </svg>
+        <span class="text-[11px]">নিয়মকানুন</span>
+      </button>
+
+      <button type="button" data-tab="tab-duas" class="nav-btn flex flex-col items-center justify-center gap-0.5 text-slate-500 dark:text-slate-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+        </svg>
+        <span class="text-[11px]">দোয়া ও তাসবিহ</span>
+      </button>
+
+      <button type="button" data-tab="tab-rules" class="nav-btn flex flex-col items-center justify-center gap-0.5 text-slate-500 dark:text-slate-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+        <span class="text-[11px]">মাসয়ালা ও ভুল</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ==================== APPLICATION SCRIPT ==================== -->
+  <script>
+    // ---------- Helper: English digits to Bengali digits ----------
+    const bnDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
+    function toBn(str) {
+      return String(str).replace(/\d/g, d => bnDigits[d]);
+    }
+    function pad2(n) {
+      return String(n).padStart(2, '0');
+    }
+
+    // ---------- Theme (Light / Dark Mode) ----------
+    const htmlEl = document.documentElement;
+    const savedTheme = localStorage.getItem('salat_theme');
+    if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      htmlEl.classList.add('dark');
+    }
+    document.getElementById('themeToggle').addEventListener('click', () => {
+      htmlEl.classList.toggle('dark');
+      localStorage.setItem('salat_theme', htmlEl.classList.contains('dark') ? 'dark' : 'light');
+    });
+
+    // ---------- Bottom Navigation Tabs ----------
+    const navBtns = document.querySelectorAll('.nav-btn');
+    const tabPanels = document.querySelectorAll('.tab-panel');
+    navBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.dataset.tab;
+        tabPanels.forEach(p => p.classList.add('hidden'));
+        document.getElementById(targetId).classList.remove('hidden');
+
+        navBtns.forEach(b => {
+          b.classList.remove('active', 'text-emerald-700', 'dark:text-gold-400', 'font-semibold');
+          b.classList.add('text-slate-500', 'dark:text-slate-400');
+        });
+        btn.classList.add('active', 'text-emerald-700', 'dark:text-gold-400', 'font-semibold');
+        btn.classList.remove('text-slate-500', 'dark:text-slate-400');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+
+    // ---------- Sub-tab Helpers (Guide & Duas) ----------
+    function setupSubTabs(btnSelector, panelPrefix, attrName) {
+      const btns = document.querySelectorAll(btnSelector);
+      btns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const key = btn.getAttribute(attrName);
+          document.querySelectorAll(`.${panelPrefix}-sub-panel`).forEach(p => p.classList.add('hidden'));
+          document.getElementById(`${panelPrefix}-${key}`).classList.remove('hidden');
+
+          btns.forEach(b => {
+            b.classList.remove('bg-emerald-700', 'text-white', 'shadow-sm');
+            b.classList.add('bg-white', 'dark:bg-[#11221c]', 'text-slate-700', 'dark:text-slate-300', 'border', 'border-emerald-100', 'dark:border-emerald-900');
+          });
+          btn.classList.add('bg-emerald-700', 'text-white', 'shadow-sm');
+          btn.classList.remove('bg-white', 'dark:bg-[#11221c]', 'text-slate-700', 'dark:text-slate-300', 'border', 'border-emerald-100', 'dark:border-emerald-900');
+        });
+      });
+    }
+    setupSubTabs('.guide-sub-btn', 'guide', 'data-guide-tab');
+    setupSubTabs('.dua-sub-btn', 'dua', 'data-dua-tab');
+
+    // ---------- Reliable Hijri Date Converter (Zero ICU Locale Bug) ----------
+    const hijriMonthsBn = [
+      'মুহররম', 'সফর', 'রবিউল আউয়াল', 'রবিউস সানি',
+      'জমাদিউল আউয়াল', 'জমাদিউস সানি', 'রজব', 'শাবান',
+      'রমজান', 'শাওয়াল', 'জিলকদ', 'জিলহজ'
+    ];
+
+    // Pure JS Kuwaiti/Tabular Islamic Calendar algorithm (never depends on browser ICU)
+    function gregorianToHijriAlgorithmic(dateObj) {
+      let y = dateObj.getFullYear();
+      let m = dateObj.getMonth() + 1;
+      let d = dateObj.getDate();
+
+      if (m < 3) {
+        y -= 1;
+        m += 12;
+      }
+      const a = Math.floor(y / 100);
+      let b = 2 - a + Math.floor(a / 4);
+      if (y < 1583) b = 0;
+      if (y === 1582) {
+        if (m > 10) b = -10;
+        if (m === 10) {
+          b = 0;
+          if (d > 4) b = -10;
+        }
+      }
+      const jd = Math.floor(365.25 * (y + 4716)) + Math.floor(30.6001 * (m + 1)) + d + b - 1524;
+
+      const iEpoch = 1948440;
+      let l = jd - iEpoch + 10632;
+      const n = Math.floor((l - 1) / 10631);
+      l = l - 10631 * n + 354;
+      const j = (Math.floor((10985 - l) / 5316)) * (Math.floor((50 * l) / 17719))
+              + (Math.floor(l / 5670)) * (Math.floor((43 * l) / 15238));
+      l = l - (Math.floor((30 - j) / 15)) * (Math.floor((17719 * j) / 50))
+            - (Math.floor(j / 16)) * (Math.floor((15238 * j) / 43)) + 29;
+      const hMonth = Math.floor((24 * l) / 709);
+      const hDay = l - Math.floor((709 * hMonth) / 24);
+      const hYear = 30 * n + j - 30;
+
+      return { day: hDay, month: hMonth, year: hYear };
+    }
+
+    function getSafeHijriDate(dateObj) {
+      const approxHijriYear = Math.round((dateObj.getFullYear() - 622) * 33 / 32);
+
+      // Try standard en-US Umm al-Qura via numeric formatToParts and strictly validate output
+      try {
+        const fmt = new Intl.DateTimeFormat('en-US-u-ca-islamic-umalqura', {
+          day: 'numeric',
+          month: 'numeric',
+          year: 'numeric'
+        });
+        const parts = fmt.formatToParts(dateObj);
+        const day = parseInt(parts.find(p => p.type === 'day')?.value, 10);
+        const month = parseInt(parts.find(p => p.type === 'month')?.value, 10);
+        const year = parseInt(parts.find(p => p.type === 'year')?.value, 10);
+        const era = (parts.find(p => p.type === 'era')?.value || 'AH').toUpperCase();
+
+        const isValid =
+          era !== 'BC' && era !== 'BCE' &&
+          Number.isFinite(day) && day >= 1 && day <= 30 &&
+          Number.isFinite(month) && month >= 1 && month <= 12 &&
+          Number.isFinite(year) && Math.abs(year - approxHijriYear) <= 2;
+
+        if (isValid) {
+          return { day, month, year };
+        }
+      } catch (e) {
+        // Fallback below
+      }
+      return gregorianToHijriAlgorithmic(dateObj);
+    }
+
+    function renderDateHeaders() {
+      const now = new Date();
+      const bnDays = ['রবিবার', 'সোমবার', 'মঙ্গলবার', 'বুধবার', 'বৃহস্পতিবার', 'শুক্রবার', 'শনিবার'];
+      const bnMonths = ['জানুয়ারি', 'ফেব্রুয়ারি', 'মার্চ', 'এপ্রিল', 'মে', 'জুন', 'জুলাই', 'আগস্ট', 'সেপ্টেম্বর', 'অক্টোবর', 'নভেম্বর', 'ডিসেম্বর'];
+
+      document.getElementById('currentDateText').textContent =
+        `${bnDays[now.getDay()]}, ${toBn(now.getDate())} ${bnMonths[now.getMonth()]} ${toBn(now.getFullYear())}`;
+
+      const h = getSafeHijriDate(now);
+      const hMonthName = hijriMonthsBn[h.month - 1] || '';
+      document.getElementById('hijriDateText').textContent =
+        `হিজরি: ${toBn(h.day)} ${hMonthName}, ${toBn(h.year)}`;
+    }
+
+    // ---------- Astronomical Solar Prayer Times (Bangladesh / Hanafi) ----------
+    const cities = {
+      chattogram: { name: 'চট্টগ্রাম', lat: 22.3569, lng: 91.7832 },
+      dhaka:      { name: 'ঢাকা',     lat: 23.8103, lng: 90.4125 },
+      sylhet:     { name: 'সিলেট',    lat: 24.8949, lng: 91.8687 },
+      rajshahi:   { name: 'রাজশাহী',  lat: 24.3745, lng: 88.6042 },
+      khulna:     { name: 'খুলনা',    lat: 22.8456, lng: 89.5403 },
+      barishal:   { name: 'বরিশাল',   lat: 22.7010, lng: 90.3535 },
+      rangpur:    { name: 'রংপুর',    lat: 25.7439, lng: 89.2752 },
+      mymensingh: { name: 'ময়মনসিংহ', lat: 24.7471, lng: 90.4203 }
+    };
+
+    function deg2rad(d) { return (d * Math.PI) / 180; }
+    function rad2deg(r) { return (r * 180) / Math.PI; }
+    function fixAngle(a) { return a - 360 * Math.floor(a / 360); }
+    function fixHour(h) { return h - 24 * Math.floor(h / 24); }
+
+    function julianDate0h(y, m, d) {
+      if (m <= 2) { y -= 1; m += 12; }
+      const A = Math.floor(y / 100);
+      const B = 2 - A + Math.floor(A / 4);
+      return Math.floor(365.25 * (y + 4716)) + Math.floor(30.6001 * (m + 1)) + d + B - 1524.5;
+    }
+
+    function hoursToHM(hr) {
+      const totalMins = Math.round(fixHour(hr) * 60) % 1440;
+      return [Math.floor(totalMins / 60), totalMins % 60];
+    }
+
+    function computePrayerTimes(dateObj, lat, lng) {
+      const tz = 6; // Bangladesh Standard Time (UTC+6)
+      const jd = julianDate0h(dateObj.getFullYear(), dateObj.getMonth() + 1, dateObj.getDate());
+      // Evaluate sun position around local solar noon (6h UT)
+      const D = (jd + 0.25) - 2451545.0;
+
+      const g = fixAngle(357.529 + 0.98560028 * D);
+      const q = fixAngle(280.459 + 0.98564736 * D);
+      const L = fixAngle(q + 1.915 * Math.sin(deg2rad(g)) + 0.020 * Math.sin(deg2rad(2 * g)));
+      const e = 23.439 - 0.00000036 * D;
+
+      const RA = rad2deg(Math.atan2(Math.cos(deg2rad(e)) * Math.sin(deg2rad(L)), Math.cos(deg2rad(L)))) / 15;
+      let EqT = q / 15 - fixHour(RA);
+      if (EqT > 12) EqT -= 24;
+      if (EqT < -12) EqT += 24;
+
+      const decl = Math.asin(Math.sin(deg2rad(e)) * Math.sin(deg2rad(L))); // radians
+      const latRad = deg2rad(lat);
+
+      const noon = 12 + tz - lng / 15 - EqT;
+
+      function hourAngle(angleDeg) {
+        const cosHA = (Math.sin(deg2rad(angleDeg)) - Math.sin(latRad) * Math.sin(decl))
+                    / (Math.cos(latRad) * Math.cos(decl));
+        const clamped = Math.max(-1, Math.min(1, cosHA));
+        return rad2deg(Math.acos(clamped)) / 15;
+      }
+
+      // Hanafi Asr (shadow factor = 2)
+      const asrAngleDeg = rad2deg(Math.atan(1 / (2 + Math.tan(Math.abs(latRad - decl)))));
+
+      const fajrHr    = noon - hourAngle(-18.0);     // Islamic Foundation / Karachi 18 deg
+      const sunriseHr = noon - hourAngle(-0.8333);
+      const dhuhrHr   = noon + 2 / 60;               // 2 min ihtiyat after zenith
+      const asrHr     = noon + hourAngle(asrAngleDeg);
+      const maghribHr = noon + hourAngle(-0.8333);
+      const ishaHr    = noon + hourAngle(-18.0);
+
+      return {
+        fajr:    hoursToHM(fajrHr),
+        sunrise: hoursToHM(sunriseHr),
+        dhuhr:   hoursToHM(dhuhrHr),
+        asr:     hoursToHM(asrHr),
+        maghrib: hoursToHM(maghribHr),
+        isha:    hoursToHM(ishaHr)
+      };
+    }
+
+    function formatTime12Bn(hm) {
+      const h = hm[0];
+      const m = hm[1];
+      let period = 'রাত';
+      if (h >= 3 && h < 6) period = 'ভোর';
+      else if (h >= 6 && h < 12) period = 'সকাল';
+      else if (h >= 12 && h < 15) period = 'দুপুর';
+      else if (h >= 15 && h < 18) period = 'বিকেল';
+      else if (h >= 18 && h < 20) period = 'সন্ধ্যা';
+
+      const h12 = h % 12 === 0 ? 12 : h % 12;
+      return `${period} ${toBn(h12)}:${toBn(pad2(m))}`;
+    }
+
+    const citySelect = document.getElementById('citySelect');
+    const savedCity = localStorage.getItem('salat_city') || 'chattogram';
+    citySelect.value = cities[savedCity] ? savedCity : 'chattogram';
+    citySelect.addEventListener('change', () => {
+      localStorage.setItem('salat_city', citySelect.value);
+      updatePrayerDashboard();
+    });
+
+    let lastRenderedDay = new Date().getDate();
+
+    function updatePrayerDashboard() {
+      const now = new Date();
+      if (now.getDate() !== lastRenderedDay) {
+        lastRenderedDay = now.getDate();
+        renderDateHeaders();
+      }
+
+      const cityKey = citySelect.value;
+      const cityInfo = cities[cityKey] || cities.chattogram;
+      const times = computePrayerTimes(now, cityInfo.lat, cityInfo.lng);
+
+      document.getElementById('selectedCityLabel').textContent = cityInfo.name;
+      document.getElementById('sunriseTime').textContent = formatTime12Bn(times.sunrise);
+      document.getElementById('sunsetTime').textContent = formatTime12Bn(times.maghrib);
+      document.getElementById('currentClock').textContent = `এখন সময়: ${formatTime12Bn([now.getHours(), now.getMinutes()])}`;
+
+      const isFriday = now.getDay() === 5;
+      const prayers = [
+        { key: 'fajr',    name: 'ফজর',          rakat: '২ সুন্নত + ২ ফরজ',                   hm: times.fajr },
+        { key: 'dhuhr',   name: isFriday ? 'জুমআ / যোহর' : 'যোহর', rakat: isFriday ? '৪ সুন্নত + ২ ফরজ + ৪+২ সুন্নত' : '৪ সুন্নত + ৪ ফরজ + ২ সুন্নত + ২ নফল', hm: times.dhuhr },
+        { key: 'asr',     name: 'আসর',           rakat: '৪ সুন্নত (গ.মু.) + ৪ ফরজ',            hm: times.asr },
+        { key: 'maghrib', name: 'মাগরিব',        rakat: '৩ ফরজ + ২ সুন্নত + ২ নফল',           hm: times.maghrib },
+        { key: 'isha',    name: 'এশা',           rakat: '৪ সুন্নত + ৪ ফরজ + ২ সুন্নত + ৩ বিতর', hm: times.isha }
+      ];
+
+      const nowSec = now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds();
+      const toSec = hm => hm[0] * 3600 + hm[1] * 60;
+
+      let currentPrayerKey = null;
+      let currentWaqtLabel = 'এশা / তাহাজ্জুদ';
+
+      if (nowSec >= toSec(times.fajr) && nowSec < toSec(times.sunrise)) {
+        currentPrayerKey = 'fajr';
+        currentWaqtLabel = 'ফজর';
+      } else if (nowSec >= toSec(times.sunrise) && nowSec < toSec(times.dhuhr)) {
+        currentPrayerKey = null;
+        currentWaqtLabel = 'ইশরাক / চাশত (নফল)';
+      } else if (nowSec >= toSec(times.dhuhr) && nowSec < toSec(times.asr)) {
+        currentPrayerKey = 'dhuhr';
+        currentWaqtLabel = isFriday ? 'জুমআ / যোহর' : 'যোহর';
+      } else if (nowSec >= toSec(times.asr) && nowSec < toSec(times.maghrib)) {
+        currentPrayerKey = 'asr';
+        currentWaqtLabel = 'আসর';
+      } else if (nowSec >= toSec(times.maghrib) && nowSec < toSec(times.isha)) {
+        currentPrayerKey = 'maghrib';
+        currentWaqtLabel = 'মাগরিব';
+      } else {
+        currentPrayerKey = 'isha';
+        currentWaqtLabel = now.getHours() < 5 ? 'এশা / তাহাজ্জুদ' : 'এশা';
+      }
+
+      let nextPrayer = prayers.find(p => toSec(p.hm) > nowSec);
+      let diffSec = 0;
+
+      if (nextPrayer) {
+        diffSec = toSec(nextPrayer.hm) - nowSec;
+      } else {
+        const tomorrow = new Date(now.getTime() + 86400000);
+        const tomorrowTimes = computePrayerTimes(tomorrow, cityInfo.lat, cityInfo.lng);
+        nextPrayer = { key: 'fajr', name: 'ফজর', hm: tomorrowTimes.fajr };
+        diffSec = (86400 - nowSec) + toSec(tomorrowTimes.fajr);
+      }
+
+      const hrs = Math.floor(diffSec / 3600);
+      const mins = Math.floor((diffSec % 3600) / 60);
+      const secs = diffSec % 60;
+
+      document.getElementById('currentWaqtBadge').textContent = `বর্তমান সময়: ${currentWaqtLabel}`;
+      document.getElementById('nextPrayerName').textContent = `পরবর্তী ওয়াক্ত: ${nextPrayer.name}`;
+      document.getElementById('nextPrayerTimeLabel').textContent = `শুরু হবে: ${formatTime12Bn(nextPrayer.hm)}`;
+      document.getElementById('countdownTimer').textContent = `${toBn(pad2(hrs))}:${toBn(pad2(mins))}:${toBn(pad2(secs))}`;
+
+      const listEl = document.getElementById('prayerList');
+      listEl.innerHTML = prayers.map(p => {
+        const isCurrent = p.key === currentPrayerKey;
+        const isNext = p.key === nextPrayer.key;
+        return `
+          <div class="px-4 sm:px-5 py-3.5 flex items-center justify-between gap-3 transition ${isCurrent ? 'bg-emerald-50/85 dark:bg-emerald-950/60' : ''}">
+            <div class="flex items-center gap-3 min-w-0">
+              <span class="w-2.5 h-2.5 rounded-full shrink-0 ${isCurrent ? 'bg-emerald-600 ring-4 ring-emerald-200 dark:ring-emerald-900' : (isNext ? 'bg-gold-500' : 'bg-slate-300 dark:bg-slate-700')}"></span>
+              <div class="min-w-0">
+                <div class="flex items-center gap-2 flex-wrap">
+                  <span class="font-bold text-sm sm:text-base ${isCurrent ? 'text-emerald-800 dark:text-emerald-200' : 'text-slate-800 dark:text-slate-100'}">${p.name}</span>
+                  ${isCurrent ? '<span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-700 text-white whitespace-nowrap">চলমান</span>' : ''}
+                  ${(!isCurrent && isNext) ? '<span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-100 dark:bg-amber-900/50 text-amber-800 dark:text-gold-400 whitespace-nowrap">পরবর্তী</span>' : ''}
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5 leading-snug">${p.rakat}</p>
+              </div>
+            </div>
+            <div class="text-right shrink-0">
+              <span class="font-bold text-sm sm:text-base whitespace-nowrap ${isCurrent ? 'text-emerald-800 dark:text-gold-400' : 'text-slate-700 dark:text-slate-200'}">${formatTime12Bn(p.hm)}</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    renderDateHeaders();
+    updatePrayerDashboard();
+    setInterval(updatePrayerDashboard, 1000);
+
+    // ---------- TAB 2: Guide Data (Wudu, Rakats, Namaz Steps) ----------
+    const wuduSteps = [
+      { step: '১', title: 'নিয়ত ও বিসমিল্লাহ পাঠ', desc: 'মনে মনে পবিত্রতা অর্জনের নিয়ত করে "বিসমিল্লাহির রাহমানির রাহীম" বলে ওজু শুরু করা।' },
+      { step: '২', title: 'দুই হাত কব্জি পর্যন্ত ধৌত করা', desc: 'ডান হাত থেকে শুরু করে উভয় হাতের কব্জি ও আঙুলের ফাঁকসহ ৩ বার ভালোভাবে ধোয়া।' },
+      { step: '৩', title: 'কুলি করা (৩ বার)', desc: 'ডান হাতে পানি নিয়ে ৩ বার ভালোভাবে কুলি করা। রোজা না থাকলে গড়গড়া করা সুন্নত।' },
+      { step: '৪', title: 'নাকে পানি দেওয়া (৩ বার)', desc: 'ডান হাতে নাকের ভেতরে নরম জায়গা পর্যন্ত পানি টেনে নিয়ে বাম হাতের কনিষ্ঠ আঙুল দিয়ে নাক পরিষ্কার করা।' },
+      { step: '৫', title: 'সমস্ত মুখমণ্ডল ধৌত করা (৩ বার — ফরজ)', desc: 'কপালের চুলের গোড়া থেকে থুতনির নিচ পর্যন্ত এবং এক কানের লতি থেকে অন্য কানের লতি পর্যন্ত ভালোভাবে ধোয়া।' },
+      { step: '৬', title: 'কনুইসহ উভয় হাত ধৌত করা (৩ বার — ফরজ)', desc: 'প্রথমে ডান হাত এবং পরে বাম হাতের আঙুলের ডগা থেকে কনুইসহ সামান্য ওপর পর্যন্ত ভালোভাবে ধৌত করা।' },
+      { step: '৭', title: 'মাথা, কান ও ঘাড় মাসাহ করা (১ বার)', desc: 'ভেজা হাত দিয়ে সম্পূর্ণ মাথা বা অন্তত এক-চতুর্থাংশ (ফরজ), অতঃপর দুই কানের ভেতর ও পেছন অংশ এবং হাতের পিঠ দিয়ে ঘাড় মাসাহ করা।' },
+      { step: '৮', title: 'টাখনুসহ উভয় পা ধৌত করা (৩ বার — ফরজ)', desc: 'প্রথমে ডান পা, পরে বাম পায়ের আঙুল খিলাল করে গোড়ালি ও টাখনুসহ ভালোভাবে ধোয়া।' },
+      {
+        step: '৯',
+        title: 'ওজু শেষে দোয়া পাঠ',
+        desc: 'ওজু শেষে কালিমা শাহাদাত পাঠ করা সুন্নত:',
+        ar: 'أَشْهَدُ أَنْ لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ',
+        bn: 'আশহাদু আল্লা ইলাহা ইল্লাল্লাহু ওয়াহদাহু লা শারীকা লাহু ওয়া আশহাদু আন্না মুহাম্মাদান আবদুহু ওয়া রাসূলুহু।',
+        meaning: 'আমি সাক্ষ্য দিচ্ছি যে, আল্লাহ ছাড়া কোনো উপাস্য নেই, তিনি একক, তাঁর কোনো শরিক নেই; এবং আমি আরও সাক্ষ্য দিচ্ছি যে, মুহাম্মদ (সা.) তাঁর বান্দা ও রাসূল।'
+      }
+    ];
+
+    document.getElementById('wuduStepsList').innerHTML = wuduSteps.map(item => `
+      <div class="bg-white dark:bg-[#11221c] p-4 rounded-2xl border border-emerald-100 dark:border-emerald-900/60 flex gap-3.5 items-start">
+        <div class="w-8 h-8 rounded-xl bg-emerald-100 dark:bg-emerald-900/60 text-emerald-800 dark:text-gold-400 font-bold flex items-center justify-center shrink-0">
+          ${item.step}
+        </div>
+        <div class="min-w-0 flex-1 space-y-1.5">
+          <h4 class="font-bold text-sm sm:text-base text-emerald-900 dark:text-emerald-100">${item.title}</h4>
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">${item.desc}</p>
+          ${item.ar ? `
+            <p class="font-arabic text-xl text-emerald-950 dark:text-gold-400 bg-emerald-50/60 dark:bg-emerald-950/40 p-2.5 rounded-xl">${item.ar}</p>
+            <p class="text-xs text-slate-700 dark:text-slate-200 leading-relaxed"><strong class="text-emerald-700 dark:text-emerald-400">উচ্চারণ:</strong> ${item.bn}</p>
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed"><strong class="text-gold-700 dark:text-gold-400">অর্থ:</strong> ${item.meaning}</p>
+          ` : ''}
+        </div>
+      </div>
+    `).join('');
+
+    const rakatTableData = [
+      { waqt: 'ফজর', time: 'সুবহে সাদিক থেকে সূর্যোদয়ের আগ পর্যন্ত', breakdown: '২ রাকাত সুন্নতে মুআক্কাদা + ২ রাকাত ফরজ', total: '৪ রাকাত' },
+      { waqt: 'যোহর', time: 'সূর্য পশ্চিম আকাশে ঢলে পড়ার পর থেকে আসর পর্যন্ত', breakdown: '৪ সুন্নতে মুআক্কাদা + ৪ ফরজ + ২ সুন্নতে মুআক্কাদা + ২ নফল', total: '১২ রাকাত' },
+      { waqt: 'জুমআ (শুক্রবার)', time: 'যোহরের ওয়াক্তে (খুতবা ও জামাতের সাথে)', breakdown: '৪ সুন্নত (কাবলাল জুমআ) + ২ ফরজ + ৪ সুন্নত (বাদাল জুমআ) + ২ সুন্নত (২ নফল ঐচ্ছিক)', total: '১২ রাকাত' },
+      { waqt: 'আসর', time: 'যোহরের শেষ থেকে সূর্যাস্তের আগ পর্যন্ত', breakdown: '৪ সুন্নতে গায়রে মুআক্কাদা + ৪ ফরজ', total: '৮ রাকাত' },
+      { waqt: 'মাগরিব', time: 'সূর্যাস্তের পর থেকে আকাশের লালিমা থাকা পর্যন্ত', breakdown: '৩ ফরজ + ২ সুন্নতে মুআক্কাদা + ২ নফল', total: '৭ রাকাত' },
+      { waqt: 'এশা ও বিতর', time: 'মাগরিবের পর থেকে সুবহে সাদিকের আগ পর্যন্ত', breakdown: '৪ সুন্নত (গ.মু.) + ৪ ফরজ + ২ সুন্নতে মুআক্কাদা + ২ নফল + ৩ বিতর (ওয়াজিব)', total: '১৫ রাকাত' }
+    ];
+
+    document.getElementById('rakatTableContainer').innerHTML = rakatTableData.map(r => `
+      <div class="p-4 space-y-1">
+        <div class="flex items-center justify-between gap-2">
+          <h4 class="font-bold text-emerald-800 dark:text-emerald-200">${r.waqt}</h4>
+          <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950 text-emerald-700 dark:text-gold-400 border border-emerald-200/70 dark:border-emerald-800 whitespace-nowrap shrink-0">${r.total}</span>
+        </div>
+        <p class="text-xs text-slate-500 dark:text-slate-400">সময়: ${r.time}</p>
+        <p class="text-xs sm:text-sm font-medium text-slate-700 dark:text-slate-200 pt-0.5 leading-relaxed">${r.breakdown}</p>
+      </div>
+    `).join('');
+
+    const namazSteps = [
+      { num: '১', title: 'কেবলামুখী হয়ে দাঁড়ানো ও নিয়ত', body: 'পবিত্র স্থানে জায়নামায বিছিয়ে পশ্চিম (কেবলা) দিকে মুখ করে দাঁড়ান। মনে মনে নির্ধারিত ওয়াক্ত ও রাকাতের নিয়ত করুন (মুখে উচ্চারণ জরুরি নয়, অন্তরের সংকল্পই নিয়ত)।' },
+      { num: '২', title: 'তাকবীরে তাহরীমা ও হাত বাঁধা', body: 'পুরুষগণ কান বরাবর (এবং নারীগণ কাঁধ বরাবর) উভয় হাত উঠিয়ে "আল্লাহু আকবার" বলে নাভির নিচে (নারীগণ বুকের ওপর) ডান হাত বাম হাতের ওপর রাখুন।' },
+      { num: '৩', title: 'সানা, সূরা ফাতিহা ও কিরাত পাঠ', body: 'প্রথম রাকাতে সানা পাঠ করুন। এরপর আউযুবিল্লাহ ও বিসমিল্লাহ পড়ে সূরা ফাতিহা পাঠ করে "আমীন" বলুন। অতঃপর ফরজের প্রথম ২ রাকাতে (এবং সুন্নত/নফলের প্রতি রাকাতে) অন্য একটি সূরা বা অন্তত ৩টি ছোট আয়াত মিলিয়ে পড়ুন।' },
+      { num: '৪', title: 'রুকু করা', body: '"আল্লাহু আকবার" বলে কোমর বাঁকা করে মাথা ও পিঠ সমান্তরাল রেখে দুই হাত দিয়ে হাঁটু ধরুন। রুকুতে ৩ বা ৫ বার "সুবহানা রাব্বিয়াল আযীম" পাঠ করুন। এরপর "সামিআল্লাহু লিমান হামিদাহ" বলে সোজা হয়ে দাঁড়ান এবং "রাব্বানা ওয়া লাকাল হামদ" বলুন।' },
+      { num: '৫', title: 'দুই সিজদা আদায়', body: '"আল্লাহু আকবার" বলে সিজদায় যান (নাক, কপাল, দুই হাতের তালু, দুই হাঁটু ও পায়ের আঙুল মাটিতে লাগিয়ে)। সিজদায় ৩ বার "সুবহানা রাব্বিয়াল আ’লা" পড়ুন। এরপর "আল্লাহু আকবার" বলে সোজা হয়ে বসে "রাব্বিগফিরলী" পড়ে দ্বিতীয় সিজদা করুন।' },
+      { num: '৬', title: 'দ্বিতীয় রাকাত ও প্রথম বৈঠক', body: 'দ্বিতীয় সিজদা শেষে "আল্লাহু আকবার" বলে দাঁড়ান। বিসমিল্লাহ সহ সূরা ফাতিহা ও অন্য সূরা পড়ুন এবং আগের মতো রুকু ও দুই সিজদা সম্পন্ন করে বসুন। ২ রাকাতের নামাজ হলে তাশাহহুদ, দরুদ ও দোয়া মাসূরা পড়ে সালাম ফিরান। ৩ বা ৪ রাকাতের নামাজ হলে কেবল তাশাহহুদ (আত্তাহিয়্যাতু) পড়ে তৃতীয় রাকাতের জন্য দাঁড়িয়ে যান।' },
+      { num: '৭', title: '৩য় ও ৪র্থ রাকাত (ফরজ বনাম সুন্নত/বিতর)', body: 'ফরজের ৩য় ও ৪র্থ রাকাতে শুধু সূরা ফাতিহা পড়তে হয় (অন্য সূরা মেলাতে হয় না)। তবে সুন্নত, নফল এবং বিতরের ৩য় রাকাতেও সূরা ফাতিহার সাথে অন্য সূরা মেলাতে হয়। বিতর নামাজের ৩য় রাকাতে কিরাত শেষে "আল্লাহু আকবার" বলে কান পর্যন্ত হাত তুলে পুনরায় হাত বেঁধে "দোয়া কুনুত" পড়তে হয়।' },
+      { num: '৮', title: 'শেষ বৈঠক ও সালাম ফিরানো', body: 'শেষ রাকাতের দুই সিজদা শেষে বসে তাশাহহুদ (আত্তাহিয়্যাতু), দরুদ শরীফ ও দোয়া মাসূরা পড়ুন। এরপর প্রথমে ডান দিকে এবং পরে বাম দিকে মুখ ফিরিয়ে "আসসালামু আলাইকুম ওয়া রাহমাতুল্লাহ" বলে নামাজ সম্পন্ন করুন।' }
+    ];
+
+    document.getElementById('namazStepsList').innerHTML = namazSteps.map(s => `
+      <div class="bg-white dark:bg-[#11221c] p-4 rounded-2xl border border-emerald-100 dark:border-emerald-900/60 flex gap-3.5 items-start">
+        <span class="w-8 h-8 rounded-full bg-emerald-700 text-white font-bold text-sm flex items-center justify-center shrink-0">${s.num}</span>
+        <div>
+          <h4 class="font-bold text-emerald-900 dark:text-emerald-100 text-sm sm:text-base">${s.title}</h4>
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-1 leading-relaxed">${s.body}</p>
+        </div>
+      </div>
+    `).join('');
+
+    // ---------- TAB 3: Digital Tasbeeh Counter ----------
+    const zikrData = {
+      subhanallah:     { ar: 'سُبْحَانَ اللَّهِ',          bn: 'সুবহানাল্লাহ',               mean: 'আল্লাহ তাআলা সর্বপ্রকার ত্রুটি থেকে পবিত্র' },
+      alhamdulillah:   { ar: 'الْحَمْدُ لِلَّهِ',          bn: 'আলহামদুলিল্লাহ',             mean: 'সকল প্রশংসা একমাত্র আল্লাহর জন্য' },
+      allahuakbar:     { ar: 'اللَّهُ أَكْبَرُ',            bn: 'আল্লাহু আকবার',               mean: 'আল্লাহ তাআলা সর্বশ্রেষ্ঠ ও মহান' },
+      astaghfirullah:  { ar: 'أَسْتَغْفِرُ اللَّهَ',       bn: 'আস্তাগফিরুল্লাহ',             mean: 'আমি আল্লাহর নিকট ক্ষমা প্রার্থনা করছি' },
+      lailaha:         { ar: 'لَا إِلَٰهَ إِلَّا اللَّهُ',   bn: 'লা ইলাহা ইল্লাল্লাহ',         mean: 'আল্লাহ ছাড়া কোনো সত্য উপাস্য নেই' },
+      durood:          { ar: 'صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ', bn: 'সাল্লাল্লাহু আলাইহি ওয়া সাল্লাম', mean: 'তাঁর ওপর আল্লাহর শান্তি ও রহমত বর্ষিত হোক' }
+    };
+
+    function safeInt(key, fallback) {
+      const val = parseInt(localStorage.getItem(key), 10);
+      return Number.isFinite(val) && val >= 0 ? val : fallback;
+    }
+
+    let tasbeehCount = safeInt('tasbeeh_count', 0);
+    let tasbeehTotal = safeInt('tasbeeh_total', 0);
+    let tasbeehTarget = safeInt('tasbeeh_target', 33);
+
+    const zikrSelect = document.getElementById('zikrSelect');
+    const tasbeehCountDisplay = document.getElementById('tasbeehCountDisplay');
+    const totalTasbeehDisplay = document.getElementById('totalTasbeehDisplay');
+    const tasbeehTargetLabel = document.getElementById('tasbeehTargetLabel');
+    const tasbeehRing = document.getElementById('tasbeehRing');
+    const tasbeehCompleteMsg = document.getElementById('tasbeehCompleteMsg');
+
+    function updateZikrUI() {
+      const item = zikrData[zikrSelect.value] || zikrData.subhanallah;
+      document.getElementById('tasbeehArabic').textContent = item.ar;
+      document.getElementById('tasbeehBangla').textContent = item.bn;
+      document.getElementById('tasbeehMeaning').textContent = `অর্থ: ${item.mean}`;
+    }
+
+    function updateTasbeehUI() {
+      tasbeehCountDisplay.textContent = toBn(tasbeehCount);
+      totalTasbeehDisplay.textContent = toBn(tasbeehTotal);
+      tasbeehTargetLabel.textContent = tasbeehTarget > 0 ? `লক্ষ্য: ${toBn(tasbeehTarget)}` : 'লক্ষ্য: অসীম';
+
+      const circumference = 289.03;
+      if (tasbeehTarget > 0) {
+        const progress = Math.min(tasbeehCount / tasbeehTarget, 1);
+        tasbeehRing.style.strokeDashoffset = (circumference * (1 - progress)).toFixed(2);
+        tasbeehRing.style.opacity = '1';
+        tasbeehCompleteMsg.classList.toggle('opacity-0', tasbeehCount < tasbeehTarget);
+      } else {
+        tasbeehRing.style.strokeDashoffset = '0';
+        tasbeehRing.style.opacity = '0.35';
+        tasbeehCompleteMsg.classList.add('opacity-0');
+      }
+
+      document.querySelectorAll('.target-btn').forEach(btn => {
+        const val = parseInt(btn.dataset.target, 10);
+        if (val === tasbeehTarget) {
+          btn.classList.add('bg-emerald-700', 'text-white');
+          btn.classList.remove('bg-emerald-50', 'dark:bg-emerald-950', 'text-emerald-800', 'dark:text-emerald-200', 'border', 'border-emerald-200', 'dark:border-emerald-800');
+        } else {
+          btn.classList.remove('bg-emerald-700', 'text-white');
+          btn.classList.add('bg-emerald-50', 'dark:bg-emerald-950', 'text-emerald-800', 'dark:text-emerald-200', 'border', 'border-emerald-200', 'dark:border-emerald-800');
+        }
+      });
+    }
+
+    zikrSelect.addEventListener('change', updateZikrUI);
+
+    document.querySelectorAll('.target-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        tasbeehTarget = parseInt(btn.dataset.target, 10);
+        localStorage.setItem('tasbeeh_target', tasbeehTarget);
+        updateTasbeehUI();
+      });
+    });
+
+    document.getElementById('tasbeehTapBtn').addEventListener('click', () => {
+      tasbeehCount++;
+      tasbeehTotal++;
+      if (navigator.vibrate) {
+        if (tasbeehTarget > 0 && tasbeehCount === tasbeehTarget) navigator.vibrate([40, 40, 80]);
+        else navigator.vibrate(15);
+      }
+      localStorage.setItem('tasbeeh_count', tasbeehCount);
+      localStorage.setItem('tasbeeh_total', tasbeehTotal);
+      updateTasbeehUI();
+    });
+
+    document.getElementById('tasbeehUndoBtn').addEventListener('click', () => {
+      if (tasbeehCount > 0) {
+        tasbeehCount--;
+        if (tasbeehTotal > 0) tasbeehTotal--;
+        localStorage.setItem('tasbeeh_count', tasbeehCount);
+        localStorage.setItem('tasbeeh_total', tasbeehTotal);
+        updateTasbeehUI();
+      }
+    });
+
+    document.getElementById('tasbeehResetBtn').addEventListener('click', () => {
+      tasbeehCount = 0;
+      localStorage.setItem('tasbeeh_count', 0);
+      updateTasbeehUI();
+    });
+
+    updateZikrUI();
+    updateTasbeehUI();
+
+    // ---------- TAB 3: Prayer Duas & Short Surahs ----------
+    const prayerDuas = [
+      {
+        title: 'সানা (তাকবীরে তাহরীমার পর)',
+        ar: 'سُبْحَانَكَ اللَّهُمَّ وَبِحَمْدِكَ، وَتَبَارَكَ اسْمُكَ، وَتَعَالَىٰ جَدُّكَ، وَلَا إِلَٰهَ غَيْرُكَ',
+        bn: 'সুবহানাকা আল্লাহুম্মা ওয়া বিহামদিকা, ওয়া তাবারাকাসমুকা, ওয়া তাআলা জাদ্দুকা, ওয়া লা ইলাহা গাইরুকা।',
+        meaning: 'হে আল্লাহ! আমি আপনার প্রশংসার সাথে আপনার পবিত্রতা ঘোষণা করছি। আপনার নাম বরকতময়, আপনার মহত্ত্ব অতি উচ্চ এবং আপনি ছাড়া কোনো উপাস্য নেই।'
+      },
+      {
+        title: 'রুকুর তাসবিহ',
+        ar: 'سُبْحَانَ رَبِّيَ الْعَظِيمِ',
+        bn: 'সুবহানা রাব্বিয়াল আযীম (কমপক্ষে ৩ বার)।',
+        meaning: 'আমি আমার মহান প্রতিপালকের পবিত্রতা ঘোষণা করছি।'
+      },
+      {
+        title: 'রুকু থেকে ওঠার তাসবিহ (তাসমী ও তাহমীদ)',
+        ar: 'سَمِعَ اللَّهُ لِمَنْ حَمِدَهُ — رَبَّنَا وَلَكَ الْحَمْدُ',
+        bn: 'সামিআল্লাহু লিমান হামিদাহ — রাব্বানা ওয়া লাকাল হামদ।',
+        meaning: 'যে আল্লাহর প্রশংসা করে আল্লাহ তার কথা শোনেন — হে আমাদের রব! সকল প্রশংসা কেবল আপনারই জন্য।'
+      },
+      {
+        title: 'সিজদার তাসবিহ',
+        ar: 'سُبْحَانَ رَبِّيَ الْأَعْلَىٰ',
+        bn: 'সুবহানা রাব্বিয়াল আ’লা (কমপক্ষে ৩ বার)।',
+        meaning: 'আমি আমার সর্বোচ্চ মহান প্রতিপালকের পবিত্রতা ঘোষণা করছি।'
+      },
+      {
+        title: 'দুই সিজদার মাঝে বসার দোয়া',
+        ar: 'رَبِّ اغْفِرْ لِي، رَبِّ اغْفِرْ لِي',
+        bn: 'রাব্বিগফিরলী, রাব্বিগফিরলী।',
+        meaning: 'হে আমার রব! আমাকে ক্ষমা করুন, হে আমার রব! আমাকে ক্ষমা করুন।'
+      },
+      {
+        title: 'তাশাহহুদ (আত্তাহিয়্যাতু)',
+        ar: 'التَّحِيَّاتُ لِلَّهِ وَالصَّلَوَاتُ وَالطَّيِّبَاتُ، السَّلَامُ عَلَيْكَ أَيُّهَا النَّبِيُّ وَرَحْمَةُ اللَّهِ وَبَرَكَاتُهُ، السَّلَامُ عَلَيْنَا وَعَلَىٰ عِبَادِ اللَّهِ الصَّالِحِينَ، أَشْهَدُ أَنْ لَا إِلَٰهَ إِلَّا اللَّهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ',
+        bn: 'আত্তাহিয়্যাতু লিল্লাহি ওয়াস সালাওয়াতু ওয়াত তাইয়্যিবাতু, আসসালামু আলাইকা আইয়্যুহান নাবিয়্যু ওয়া রাহমাতুল্লাহি ওয়া বারাকাতুহু, আসসালামু আলাইনা ওয়া আলা ইবাদিল্লাহিস সালিহীন। আশহাদু আল্লা ইলাহা ইল্লাল্লাহু ওয়া আশহাদু আন্না মুহাম্মাদান আবদুহু ওয়া রাসূলুহু।',
+        meaning: 'সকল মৌখিক, শারীরিক ও আর্থিক ইবাদত আল্লাহর জন্য। হে নবী! আপনার ওপর আল্লাহর শান্তি, রহমত ও বরকত বর্ষিত হোক। শান্তি বর্ষিত হোক আমাদের এবং আল্লাহর নেক বান্দাদের ওপর। আমি সাক্ষ্য দিচ্ছি যে, আল্লাহ ছাড়া কোনো উপাস্য নেই এবং মুহাম্মদ (সা.) তাঁর বান্দা ও রাসূল।'
+      },
+      {
+        title: 'দরুদ শরীফ (দরুদে ইবরাহীম)',
+        ar: 'اللَّهُمَّ صَلِّ عَلَىٰ مُحَمَّدٍ وَعَلَىٰ آلِ مُحَمَّدٍ كَمَا صَلَّيْتَ عَلَىٰ إِبْرَاهِيمَ وَعَلَىٰ آلِ إِبْرَاهِيمَ إِنَّكَ حَمِيدٌ مَجِيدٌ، اللَّهُمَّ بَارِكْ عَلَىٰ مُحَمَّدٍ وَعَلَىٰ آلِ مُحَمَّدٍ كَمَا بَارَكْتَ عَلَىٰ إِبْرَاهِيمَ وَعَلَىٰ آلِ إِبْرَاهِيمَ إِنَّكَ حَمِيدٌ مَجِيدٌ',
+        bn: 'আল্লাহুম্মা সাল্লি আলা মুহাম্মাদিও ওয়া আলা আলি মুহাম্মাদিন, কামা সাল্লাইতা আলা ইবরাহীমা ওয়া আলা আলি ইবরাহীমা, ইন্নাকা হামীদুম মাজীদ। আল্লাহুম্মা বারিক আলা মুহাম্মাদিও ওয়া আলা আলি মুহাম্মাদিন, কামা বারাকতা আলা ইবরাহীমা ওয়া আলা আলি ইবরাহীমা, ইন্নাকা হামীদুম মাজীদ।',
+        meaning: 'হে আল্লাহ! আপনি মুহাম্মদ (সা.) এবং তাঁর পরিবারবর্গের ওপর রহমত বর্ষণ করুন, যেভাবে আপনি ইবরাহীম (আ.) ও তাঁর পরিবারবর্গের ওপর রহমত বর্ষণ করেছেন। নিশ্চয়ই আপনি প্রশংসিত ও মহিমান্বিত। হে আল্লাহ! আপনি মুহাম্মদ (সা.) ও তাঁর পরিবারবর্গের ওপর বরকত দান করুন, যেভাবে ইবরাহীম (আ.) ও তাঁর পরিবারবর্গের ওপর বরকত দান করেছেন।'
+      },
+      {
+        title: 'দোয়া মাসূরা (সালাম ফিরানোর পূর্বে)',
+        ar: 'اللَّهُمَّ إِنِّي ظَلَمْتُ نَفْسِي ظُلْمًا كَثِيرًا، وَلَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ، فَاغْفِرْ لِي مَغْفِرَةً مِنْ عِنْدِكَ وَارْحَمْنِي، إِنَّكَ أَنْتَ الْغَفُورُ الرَّحِيمُ',
+        bn: 'আল্লাহুম্মা ইন্নী যলামতু নাফসী যুলমান কাসীরা, ওয়া লা ইয়াগফিরুয যুনূবা ইল্লা আন্তা, ফাগফিরলী মাগফিরাতাম মিন ইনদিকা ওয়ারহামনী, ইন্নাকা আন্তাল গাফূরুর রাহীম।',
+        meaning: 'হে আল্লাহ! আমি নিজের ওপর অনেক জুলুম করেছি। আর আপনি ছাড়া গুনাহ ক্ষমা করার কেউ নেই। অতএব আপনার পক্ষ থেকে আমাকে বিশেষ ক্ষমা করুন এবং আমার প্রতি দয়া করুন। নিশ্চয়ই আপনি অত্যন্ত ক্ষমাশীল ও পরম দয়ালু।'
+      },
+      {
+        title: 'দোয়া কুনুত (বিতর নামাজের ৩য় রাকাতে)',
+        ar: 'اللَّهُمَّ إِنَّا نَسْتَعِينُكَ وَنَسْتَغْفِرُكَ وَنُؤْمِنُ بِكَ وَنَتَوَكَّلُ عَلَيْكَ وَنُثْنِي عَلَيْكَ الْخَيْرَ، وَنَشْكُرُكَ وَلَا نَكْفُرُكَ وَنَخْلَعُ وَنَتْرُكُ مَنْ يَفْجُرُكَ، اللَّهُمَّ إِيَّاكَ نَعْبُدُ وَلَكَ نُصَلِّي وَنَسْجُدُ وَإِلَيْكَ نَسْعَىٰ وَنَحْفِدُ، وَنَرْجُو رَحْمَتَكَ وَنَخْشَىٰ عَذَابَكَ، إِنَّ عَذَابَكَ بِالْكُفَّارِ مُلْحِقٌ',
+        bn: 'আল্লাহুম্মা ইন্না নাসতাঈনুকা ওয়া নাসতাগফিরুকা ওয়া নু’মিনু বিকা ওয়া নাতাওয়াক্কালু আলাইকা ওয়া নুছনী আলাইকাল খাইর। ওয়া নাশকুরুকা ওয়া লা নাকফুরুকা ওয়া নাখলাউ ওয়া নাতরুকু মাইঁ ইয়াফজুরুক। আল্লাহুম্মা ইয়্যাকা না’বুদু ওয়া লাকা নুসাল্লী ওয়া নাসজুদু ওয়া ইলাইকা নাসআ ওয়া নাহফিদু, ওয়া নারজূ রাহমাতাকা ওয়া নাখশা আজাবাকা, ইন্না আজাবাকা বিল কুফফারি মুলহিক।',
+        meaning: 'হে আল্লাহ! আমরা আপনার কাছেই সাহায্য ও ক্ষমা চাই, আপনার ওপর ঈমান রাখি, আপনার ওপর ভরসা করি এবং আপনার উত্তম প্রশংসা করি। আমরা আপনার কৃতজ্ঞতা আদায় করি, অকৃতজ্ঞ হই না এবং আপনার অবাধ্য ব্যক্তিদের পরিত্যাগ করি। হে আল্লাহ! আমরা কেবল আপনারই ইবাদত করি, আপনারই জন্য নামাজ ও সিজদা করি, আপনার রহমতের আশা করি এবং আপনার শাস্তিকে ভয় করি। নিশ্চয়ই আপনার কঠিন শাস্তি কাফিরদের ওপর আপতিত হবে।'
+      }
+    ];
+
+    const shortSurahs = [
+      {
+        title: 'সূরা আল-ফাতিহা (১)',
+        ar: 'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ ۝ الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ ۝ الرَّحْمَٰنِ الرَّحِيمِ ۝ مَالِكِ يَوْمِ الدِّينِ ۝ إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ ۝ اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ ۝ صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ ۝',
+        bn: 'বিসমিল্লাহির রাহমানির রাহীম। আলহামদুলিল্লাহি রাব্বিল আলামীন। আর রাহমানির রাহীম। মালিকি ইয়াওমিদ্দীন। ইয়্যাকা না’বুদু ওয়া ইয়্যাকা নাসতাঈন। ইহদিনাস সিরাতাল মুস্তাকীম। সিরাতাল্লাযীনা আনআমতা আলাইহিম, গাইরিল মাগদূবি আলাইহিম ওয়া লাদ্দোয়াল্লীন। (আমীন)',
+        meaning: 'পরম করুণাময় অসীম দয়ালু আল্লাহর নামে। সকল প্রশংসা জগতসমূহের প্রতিপালক আল্লাহর জন্য। যিনি পরম করুণাময়, অতি দয়ালু। বিচার দিনের মালিক। আমরা কেবল আপনারই ইবাদত করি এবং আপনারই সাহায্য প্রার্থনা করি। আমাদের সরল পথ প্রদর্শন করুন—সেই সব লোকদের পথ, যাদের ওপর আপনি অনুগ্রহ করেছেন; তাদের পথ নয় যারা অভিশপ্ত ও পথভ্রষ্ট হয়েছে।'
+      },
+      {
+        title: 'সূরা আল-ইখলাস (১১২)',
+        ar: 'قُلْ هُوَ اللَّهُ أَحَدٌ ۝ اللَّهُ الصَّمَدُ ۝ لَمْ يَلِدْ وَلَمْ يُولَدْ ۝ وَلَمْ يَكُنْ لَهُ كُفُوًا أَحَدٌ ۝',
+        bn: 'কুল হুওয়াল্লাহু আহাদ। আল্লাহুস সামাদ। লাম ইয়ালিদ ওয়া লাম ইউলাদ। ওয়া লাম ইয়াকুল্লাহু কুফুওয়ান আহাদ।',
+        meaning: 'বলুন, তিনি আল্লাহ, এক-অদ্বিতীয়। আল্লাহ অমুখাপেক্ষী। তিনি কাউকে জন্ম দেননি এবং তাঁকেও জন্ম দেওয়া হয়নি। আর তাঁর সমকক্ষ কেউই নেই।'
+      },
+      {
+        title: 'সূরা আল-কাওসার (১০৮)',
+        ar: 'إِنَّا أَعْطَيْنَاكَ الْكَوْثَرَ ۝ فَصَلِّ لِرَبِّكَ وَانْحَرْ ۝ إِنَّ شَانِئَكَ هُوَ الْأَبْتَرُ ۝',
+        bn: 'ইন্না আ’তাইনাকাল কাউসার। ফাসাল্লি লিরাব্বিকা ওয়ানহার। ইন্না শানিয়াকা হুওয়াল আবতার।',
+        meaning: 'নিশ্চয়ই আমি আপনাকে কাউসার (অসংখ্য কল্যাণ ও হাউজে কাউসার) দান করেছি। অতএব আপনার প্রতিপালকের উদ্দেশ্যে নামাজ আদায় করুন এবং কোরবানি করুন। নিশ্চয়ই আপনার প্রতি বিদ্বেষ পোষণকারীই নির্বংশ।'
+      },
+      {
+        title: 'সূরা আল-আসর (১০৩)',
+        ar: 'وَالْعَصْرِ ۝ إِنَّ الْإِنْسَانَ لَفِي خُسْرٍ ۝ إِلَّا الَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ وَتَوَاصَوْا بِالْحَقِّ وَتَوَاصَوْا بِالصَّبْرِ ۝',
+        bn: 'ওয়াল আসর। ইন্নাল ইনসানা লাফী খুসর। ইল্লাল্লাযীনা আমানু ওয়া আমিলুস সালিহাতি ওয়া তাওয়াসাও বিল হাক্কি ওয়া তাওয়াসাও বিস সাবর।',
+        meaning: 'সময়ের শপথ! নিশ্চয়ই মানুষ ক্ষতির মধ্যে নিমজ্জিত। তবে তারা ছাড়া, যারা ঈমান এনেছে, সৎকর্ম করেছে, একে অপরকে সত্যের উপদেশ দিয়েছে এবং ধৈর্য ধারণের উপদেশ দিয়েছে।'
+      },
+      {
+        title: 'সূরা আল-ফালাক (১১৩)',
+        ar: 'قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ ۝ مِنْ شَرِّ مَا خَلَقَ ۝ وَمِنْ شَرِّ غَاسِقٍ إِذَا وَقَبَ ۝ وَمِنْ شَرِّ النَّفَّاثَاتِ فِي الْعُقَدِ ۝ وَمِنْ شَرِّ حَاسِدٍ إِذَا حَسَدَ ۝',
+        bn: 'কুল আউযু বিরাব্বিল ফালাক। মিন শাররি মা খালাক। ওয়া মিন শাররি গাসিকিন ইযা ওয়াকাব। ওয়া মিন শাররিন নাফফাছাতি ফিল উকাদ। ওয়া মিন শাররি হাসিদিন ইযা হাসাদ।',
+        meaning: 'বলুন, আমি আশ্রয় প্রার্থনা করছি ভোরের প্রতিপালকের, তিনি যা সৃষ্টি করেছেন তার অনিষ্ট থেকে, অন্ধকার রাতের অনিষ্ট থেকে যখন তা গভীর হয়, গিরায় ফুঁৎকারকারিণীদের অনিষ্ট থেকে এবং হিংসুকের অনিষ্ট থেকে যখন সে হিংসা করে।'
+      },
+      {
+        title: 'সূরা আন-নাস (১১৪)',
+        ar: 'قُلْ أَعُوذُ بِرَبِّ النَّاسِ ۝ مَلِكِ النَّاسِ ۝ إِلَٰهِ النَّاسِ ۝ مِنْ شَرِّ الْوَسْوَاسِ الْخَنَّاسِ ۝ الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ ۝ مِنَ الْجِنَّةِ وَالنَّاسِ ۝',
+        bn: 'কুল আউযু বিরাব্বিন নাস। মালিকিন নাস। ইলাহিন নাস। মিন শাররিল ওয়াসওয়াসিল খান্নাস। আল্লাযী ইউওয়াসউইসু ফী সুদূরিন নাস। মিনাল জিন্নাতি ওয়ান নাস।',
+        meaning: 'বলুন, আমি আশ্রয় প্রার্থনা করছি মানুষের প্রতিপালকের, মানুষের অধিপতির, মানুষের প্রকৃত উপাস্যের—আত্মগোপনকারী কুমন্ত্রণাদাতার অনিষ্ট থেকে, যে মানুষের অন্তরে কুমন্ত্রণা দেয়—জিন ও মানুষের মধ্য থেকে।'
+      }
+    ];
+
+    function renderArabicCards(containerId, items) {
+      document.getElementById(containerId).innerHTML = items.map(item => `
+        <article class="bg-white dark:bg-[#11221c] rounded-2xl p-4 sm:p-5 border border-emerald-100 dark:border-emerald-900/60 shadow-sm space-y-3">
+          <div class="border-b border-emerald-50 dark:border-emerald-900/50 pb-2.5">
+            <h3 class="font-bold text-emerald-900 dark:text-emerald-100 text-base">${item.title}</h3>
+          </div>
+          <p class="font-arabic text-2xl sm:text-[26px] text-emerald-950 dark:text-gold-400 bg-emerald-50/50 dark:bg-emerald-950/40 p-3.5 rounded-xl leading-loose">
+            ${item.ar}
+          </p>
+          <div class="space-y-1.5 text-sm">
+            <p class="text-slate-700 dark:text-slate-200 leading-relaxed">
+              <span class="font-bold text-emerald-700 dark:text-emerald-400">উচ্চারণ:</span> ${item.bn}
+            </p>
+            <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+              <span class="font-bold text-gold-700 dark:text-gold-400">অর্থ:</span> ${item.meaning}
+            </p>
+          </div>
+        </article>
+      `).join('');
+    }
+    renderArabicCards('dua-prayers', prayerDuas);
+    renderArabicCards('dua-surahs', shortSurahs);
+
+    // ---------- TAB 4: Rules & Mistakes Accordions ----------
+    const rulesCategories = [
+      {
+        title: 'নামাজের ফরজ (১৩টি — ৭টি আহকাম, ৬টি আরকান)',
+        badge: 'ফরজ',
+        badgeColor: 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/70 dark:text-emerald-200',
+        points: [
+          '<strong>বাহিরের ৭ ফরজ (আহকাম):</strong> ১. শরীর পাক হওয়া, ২. কাপড় পাক হওয়া, ৩. নামাজের জায়গা পাক হওয়া, ৪. সতর ঢাকা (পুরুষের নাভি থেকে হাঁটুর নিচ পর্যন্ত; নারীর মুখমণ্ডল, হাতের কব্জি ও পায়ের পাতা ব্যতীত সমস্ত শরীর), ৫. কেবলামুখী হওয়া, ৬. ওয়াক্ত হওয়া, ৭. নামাজের নিয়ত করা।',
+          '<strong>ভেতরের ৬ ফরজ (আরকান):</strong> ১. তাকবীরে তাহরীমা (আল্লাহু আকবার বলে শুরু), ২. দাঁড়িয়ে নামাজ পড়া (সক্ষম হলে), ৩. কিরাত (কোরআনের অংশ) পাঠ করা, ৪. রুকু করা, ৫. দুই সিজদা করা, ৬. শেষ বৈঠকে তাশাহহুদ পরিমাণ বসা।'
+        ]
+      },
+      {
+        title: 'নামাজের ওয়াজিব সমূহ (প্রধান অংশ)',
+        badge: 'ওয়াজিব',
+        badgeColor: 'bg-amber-100 text-amber-800 dark:bg-amber-900/50 dark:text-gold-400',
+        points: [
+          '১. ফরজের প্রথম ২ রাকাত এবং সুন্নত/নফলের প্রতি রাকাতে সূরা ফাতিহা পড়া।',
+          '২. সূরা ফাতিহার সাথে অন্য একটি সূরা বা ছোট ৩ আয়াত (বা সমপরিমাণ বড় ১ আয়াত) মেলানো।',
+          '৩. রুকু-সিজদায় স্থিরতা অবলম্বন করা (তা’দীলে আরকান)।',
+          '৪. রুকু থেকে সোজা হয়ে দাঁড়ানো ও দুই সিজদার মাঝে সোজা হয়ে বসা।',
+          '৫. প্রথম বৈঠক করা (৩ বা ৪ রাকাতের নামাজে) এবং উভয় বৈঠকে তাশাহহুদ পড়া।',
+          '৬. বিতর নামাজে দোয়া কুনুত পড়া এবং সালাম ফিরিয়ে নামাজ শেষ করা।',
+          '<em>নোট: কোনো ওয়াজিব ভুলবশত ছুটে গেলে শেষ বৈঠকে সাহু সিজদা দিলে নামাজ শুদ্ধ হয়ে যায়।</em>'
+        ]
+      },
+      {
+        title: 'সুন্নত, মুস্তাহাব ও মাকরূহ সমূহ',
+        badge: 'আদব ও সতর্কতা',
+        badgeColor: 'bg-sky-100 text-sky-800 dark:bg-sky-900/50 dark:text-sky-300',
+        points: [
+          '<strong>প্রধান সুন্নত:</strong> তাকবীরের সময় হাত তোলা, সানা, আউযুবিল্লাহ ও বিসমিল্লাহ পড়া, রুকু-সিজদার তাসবিহ পড়া, দরুদ ও দোয়া মাসূরা পড়া।',
+          '<strong>মুস্তাহাব:</strong> দাঁড়ানো অবস্থায় সিজদার স্থানে, রুকুতে পায়ের পাতার দিকে, সিজদায় নাকের ডগায় এবং বৈঠকে কোলের দিকে দৃষ্টি রাখা।',
+          '<strong>মাকরূহ কাজ (নামাজের সওয়াব কমিয়ে দেয়):</strong> কাপড় বা শরীর নিয়ে খেলা করা, হাই তোলা বা আঙুল ফোটানো, এদিক-ওদিক তাকানো, চোখ বন্ধ করে রাখা (মনোযোগের সমস্যা না হলে), রুকু-সিজদায় তাড়াহুড়ো করা।'
+        ]
+      },
+      {
+        title: 'নামাজ ভঙ্গের কারণসমূহ',
+        badge: 'গুরুত্বপূর্ণ',
+        badgeColor: 'bg-rose-100 text-rose-800 dark:bg-rose-900/50 dark:text-rose-300',
+        points: [
+          '১. নামাজের মধ্যে ইচ্ছাকৃত বা ভুলে কথা বলা।',
+          '২. বিনা ওজরে গলা খাঁকারি দেওয়া বা উচ্চস্বরে হাসা (অট্টহাসিতে ওজু ও নামাজ উভয়ই ভেঙে যায়)।',
+          '৩. কোনো কিছু খাওয়া বা পান করা এবং সালাম দেওয়া বা সালামের উত্তর দেওয়া।',
+          '৪. কেবলা থেকে বুক ঘুরে যাওয়া বা আমলে কাসীর (অতিরিক্ত নড়াচড়া) করা।',
+          '৫. নামাজের কোনো ফরজ বাদ পড়া অথবা নামাজ অবস্থায় ওজু ভেঙে যাওয়া।'
+        ]
+      }
+    ];
+
+    document.getElementById('rulesAccordions').innerHTML = rulesCategories.map((cat, idx) => `
+      <div class="accordion-item ${idx === 0 ? 'open' : ''} bg-white dark:bg-[#11221c] rounded-2xl border border-emerald-100 dark:border-emerald-900/60 overflow-hidden shadow-sm">
+        <button type="button" class="accordion-trigger w-full px-4 py-3.5 flex items-center justify-between text-left gap-3">
+          <div class="flex items-center gap-2.5 flex-wrap">
+            <span class="text-[11px] font-bold px-2.5 py-0.5 rounded-full ${cat.badgeColor} whitespace-nowrap">${cat.badge}</span>
+            <h3 class="font-bold text-sm sm:text-base text-emerald-900 dark:text-emerald-100">${cat.title}</h3>
+          </div>
+          <svg class="accordion-chevron w-5 h-5 text-slate-400 shrink-0 transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <div class="accordion-content">
+          <div class="accordion-inner">
+            <div class="px-4 pb-4 pt-2.5 border-t border-emerald-50 dark:border-emerald-900/40 space-y-2 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              ${cat.points.map(pt => `<p>${pt}</p>`).join('')}
+            </div>
+          </div>
+        </div>
+      </div>
+    `).join('');
+
+    const commonMistakes = [
+      {
+        mistake: 'ভুল: রুকু ও সিজদায় কাকের মতো দ্রুত ঠোকর দেওয়া (স্থির না হওয়া)',
+        fix: 'সঠিক: রুকুতে পিঠ সোজা রেখে, রুকু থেকে উঠে সোজা দাঁড়িয়ে এবং দুই সিজদার মাঝে স্থির হয়ে বসে অন্তত ১ বার "সুবহানাল্লাহ" বলার মতো সময় অপেক্ষা করা ওয়াজিব।'
+      },
+      {
+        mistake: 'ভুল: সিজদায় নাক মাটিতে না লাগানো বা পায়ের আঙুল মাটি থেকে উঠিয়ে রাখা',
+        fix: 'সঠিক: সিজদায় কপালের সাথে নাক অবশ্যই মাটিতে লাগাতে হবে এবং উভয় পায়ের আঙুলের পেট কেবলামুখী করে জমিনে রাখতে হবে।'
+      },
+      {
+        mistake: 'ভুল: সিজদায় দুই হাতের কনুই মাটিতে বিছিয়ে দেওয়া',
+        fix: 'সঠিক: পুরুষগণ সিজদায় দুই হাতের কনুই মাটি ও পাঁজর থেকে কিছুটা ফাঁকা রাখবেন (কনুই মাটিতে বিছাবেন না)। নারীরা শরীর গুটিয়ে রাখবেন।'
+      },
+      {
+        mistake: 'ভুল: ইমামের আগেই রুকু বা সিজদায় চলে যাওয়া বা ইমামের সাথে সাথে তাকবীর বলা',
+        fix: 'সঠিক: জামাতে নামাজ পড়লে ইমামের তাকবীর শেষ হওয়ার পর ইমামকে অনুসরণ করে রুকু-সিজদায় যেতে হবে; ইমামের আগে যাওয়া গুরুতর ভুল।'
+      },
+      {
+        mistake: 'ভুল: মোবাইল ফোন সাইলেন্ট না করে নামাজে দাঁড়ানো',
+        fix: 'সঠিক: নামাজে দাঁড়ানোর আগেই মোবাইল সাইলেন্ট বা ফ্লাইট মোডে রাখুন, যাতে রিংটোনে নিজের ও অন্য মুসল্লিদের খুশু-খুজু নষ্ট না হয়।'
+      }
+    ];
+
+    document.getElementById('mistakesList').innerHTML = commonMistakes.map(m => `
+      <div class="bg-white dark:bg-[#11221c] p-4 rounded-2xl border border-emerald-100 dark:border-emerald-900/60 space-y-1.5">
+        <p class="text-xs sm:text-sm font-bold text-rose-700 dark:text-rose-400 leading-relaxed">✕ ${m.mistake}</p>
+        <p class="text-xs sm:text-sm text-emerald-800 dark:text-emerald-200 leading-relaxed">✓ ${m.fix}</p>
+      </div>
+    `).join('');
+
+    document.querySelectorAll('.accordion-trigger').forEach(trigger => {
+      trigger.addEventListener('click', () => {
+        trigger.closest('.accordion-item').classList.toggle('open');
+      });
+    });
+  </script>
+</body>
+</html>
